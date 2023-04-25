@@ -26,7 +26,7 @@ packages:
   - nano nano-default-editor
 
 exclude-packages:
-  - zincate
+  - zincati
   - perl
   - perl-interpreter
   - nodejs
