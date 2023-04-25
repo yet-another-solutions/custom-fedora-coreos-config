@@ -1,7 +1,5 @@
-#variables:
-#    stream: stable
-#    prod: true
-#
-#releasever: 37
+releasever: 1
+automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
+mutate-os-release: "${releasever}"
 
 include: manifests/custom.yaml
