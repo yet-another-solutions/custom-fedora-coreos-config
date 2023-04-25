@@ -1,3 +1,5 @@
+releasever: 1
+
 include:
   - ../fedora-coreos-config/manifests/fedora-coreos-base.yaml
   - ../fedora-coreos-config/manifests/disable-zincati.yaml
