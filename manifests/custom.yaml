@@ -1,0 +1,99 @@
+include: fedora-coreos-base.yaml
+conditional-include:
+  - disable-zincati.yaml
+  - if: basearch == "aarch64"
+    include: kdump-aarch64-aws-workaround.yaml
+  - if: basearch != "s390x"
+    include: grub2-removals.yaml
+
+ostree-layers:
+    - overlay/15fcos
+
+repos:
+  - fedora-coreos-pool  
+  - fedora  
+  - fedora-updates  
+    
+packages:
+  - fedora-release-coreos
+  - fedora-repos-ostree
+  - fedora-repos-modular
+  - fedora-repos-archive
+  - moby-engine
+  - containerd
+  - nano nano-default-editor
+
+exclude-packages:
+  - zincate
+  - perl
+  - perl-interpreter
+  - nodejs
+  - dnf
+  - grubby
+  - cowsay
+  - initscripts
+  - plymouth
+  - NetworkManager-initscripts-ifcfg-rh
+
+etc-group-members:
+  - docker
+
+postprocess:
+  - |
+    #!/usr/bin/env bash
+    set -euxo pipefail
+    source /etc/os-release
+    mkdir -p /etc/zincati/config.d
+    echo -e '# https://github.com/coreos/fedora-coreos-tracker/issues/212\nupdates.enabled = false' > /etc/zincati/config.d/95-disable-on-dev.toml
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    cat > /tmp/rpm-ostreed.conf << 'EOF'
+    # By default, this system has its OS updates managed by
+    # `zincati.service`.  Changes made to this file may
+    # conflict with the configuation of `zincati.service`.
+    # See https://github.com/coreos/zincati for additional
+    # information.
+
+    EOF
+    cat /usr/etc/rpm-ostreed.conf >> /tmp/rpm-ostreed.conf
+    cp /tmp/rpm-ostreed.conf /usr/etc/rpm-ostreed.conf
+    rm /tmp/rpm-ostreed.conf
+  - |
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    list_broken_symlinks_folders=(
+      '/etc/alternatives/'
+      '/usr/lib/.build-id/'
+    )
+
+    list_known_removed_folders=(
+      '/usr/bin/systemd-firstboot'
+      '/usr/lib/systemd/system-generators/systemd-gpt-auto-generator'
+      '/usr/share/doc/'
+      '/usr/share/info/'
+      '/usr/share/man/'
+      )
+    for folder in "${list_broken_symlinks_folders[@]}"; do
+        find "${folder}" -type l | while read -r file_name; do
+            real_path=$(realpath -m "${file_name}");
+            if [[ -e "${real_path}" ]]; then
+              continue
+            fi
+            for element in "${list_known_removed_folders[@]}"; do
+              if [[ "${real_path}" == "${element}"* ]]; then
+                  rm -r "${file_name}"
+              fi
+            done
+        done
+    done
+
+
+remove-from-packages:
+  - [dbus-common, /usr/lib/sysusers.d/dbus.conf]
+
+remove-files:
+  - usr/share/info
+  - usr/share/man
+  - usr/share/doc
