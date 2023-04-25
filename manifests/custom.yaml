@@ -1,10 +1,12 @@
-include: fedora-coreos-base.yaml
+include:
+  - ../fedora-coreos-config/manifests/fedora-coreos-base.yaml
+  - ../fedora-coreos-config/manifests/disable-zincati.yaml
+
 conditional-include:
-  - fedora-coreos-config/manifests/disable-zincati.yaml
   - if: basearch == "aarch64"
-    include: fedora-coreos-config/manifests/kdump-aarch64-aws-workaround.yaml
+    include: ../fedora-coreos-config/manifests/kdump-aarch64-aws-workaround.yaml
   - if: basearch != "s390x"
-    include: fedora-coreos-config/manifests/grub2-removals.yaml
+    include: ../fedora-coreos-config/manifests/grub2-removals.yaml
 
 ostree-layers:
     - overlay/15fcos
