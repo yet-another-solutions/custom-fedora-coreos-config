@@ -1,0 +1,7 @@
+#variables:
+#    stream: stable
+#    prod: true
+#
+#releasever: 37
+
+include: manifests/custom.yaml
