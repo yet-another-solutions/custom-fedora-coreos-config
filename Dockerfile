@@ -13,4 +13,4 @@ RUN git config --global --add safe.directory /src
 # RUN git config --global --add safe.directory /srv/src/config
 # RUN cosa init /srv/src/config --force
 RUN cosa fetch
-RUN cosa build
+# RUN cosa build
