@@ -4,6 +4,7 @@ automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
 mutate-os-release: "${releasever}"
 
 rojig:
+  license: NONE
   name: custom-fedora-coreos
   summary: Custom Fedora CoreOS ${stream}
 
