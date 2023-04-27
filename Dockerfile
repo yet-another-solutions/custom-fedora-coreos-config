@@ -1,6 +1,8 @@
 FROM quay.io/coreos-assembler/coreos-assembler
+
 ENV COSA_NO_KVM=1
 ENV COSA_SKIP_OVERLAY=1
+ENV COSA_PRIVILEGED=1
 
 COPY . /src
 RUN cosa init /src
