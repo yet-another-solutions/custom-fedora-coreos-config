@@ -1,5 +1,11 @@
+ref: yet-another-solutions/fedora/${basearch}/coreos/${stream}
+
 automatic-version-prefix: "${releasever}.<date:%Y%m%d>.dev"
 mutate-os-release: "${releasever}"
+
+rojig:
+  name: custom-fedora-coreos
+  summary: Custom Fedora CoreOS ${stream}
 
 include:
   - ../fedora-coreos-config/manifests/fedora-coreos-base.yaml
