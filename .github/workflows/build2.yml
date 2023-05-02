@@ -1,10 +1,6 @@
 name: Docker CI
 
-on:
-  push:
-    branches: [$default-branch]
-  pull_request:
-    branches: [$default-branch]
+on: workflow_dispatch
 
 jobs:
   buid:
