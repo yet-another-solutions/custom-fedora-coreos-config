@@ -6,6 +6,9 @@ jobs:
   buid:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Checkout submodukes
+        run: git submodule update --init --recursive
       - name: Build Docker image
         run: docker build .
