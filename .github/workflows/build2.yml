@@ -14,3 +14,9 @@ jobs:
         run: docker build . -t localhost/coreos:distro
       - name: Copy distro
         run: docker cp $(docker create localhost/coreos):/srv/target/. ./target
+      - name: Publish release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "target/*"
+          body: "Test release"
+          tag: "v0.0.1-test"
