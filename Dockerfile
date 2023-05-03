@@ -11,6 +11,7 @@ RUN mkdir /srv/builds/latest
 RUN mkdir /srv/builds/latest/x86_64
 USER root
 RUN touch /srv/builds/latest/x86_64/test_live_img
+RUN echo "test" > /srv/builds/latest/x86_64/test_live_img
 
 # RUN cosa init /src
 # RUN git config --global --add safe.directory /src
