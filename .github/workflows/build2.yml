@@ -2,6 +2,9 @@ name: Docker CI
 
 on: workflow_dispatch
 
+permissions:
+  contents: write
+
 jobs:
   buid:
     runs-on: ubuntu-latest
