@@ -22,7 +22,6 @@ ostree-layers:
     - overlay/15fcos
 
 repos:
-  - fedora-coreos-pool  
   - fedora  
   - fedora-updates
     
