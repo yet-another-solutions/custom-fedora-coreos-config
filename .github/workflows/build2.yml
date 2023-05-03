@@ -13,6 +13,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Checkout submodukes
         run: git submodule update --init --recursive
+      - name: Cleanup target
+        run: rm ./target/dummy
       - name: Build Docker image
         run: docker build . -t localhost/coreos
       - name: Copy distro
@@ -22,4 +24,4 @@ jobs:
         with:
           artifacts: "target/*"
           body: "Test release"
-          tag: "v0.0.1-test"
+          tag: "v1.0.0"
