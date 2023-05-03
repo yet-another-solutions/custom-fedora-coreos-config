@@ -33,6 +33,8 @@ packages:
   - moby-engine
   - containerd
   - nano nano-default-editor
+  - dnsmasq
+  - firewalld
 
 exclude-packages:
   - zincati

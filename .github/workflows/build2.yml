@@ -19,9 +19,11 @@ jobs:
         run: docker build . -t localhost/coreos
       - name: Copy distro
         run: docker cp $(docker create localhost/coreos):/srv/target/. ./target
+      - name: Remove iso from publishing
+        run: rm ./target/*.iso
       - name: Publish release
         uses: ncipollo/release-action@v1
         with:
           artifacts: "target/*"
-          body: "Test release"
-          tag: "v1.0.0"
+          body: "Custom coreos build (v37 base)"
+          tag: "v1.0.1"
