@@ -11,7 +11,7 @@ jobs:
       - name: Checkout submodukes
         run: git submodule update --init --recursive
       - name: Build Docker image
-        run: docker build . -t localhost/coreos:distro
+        run: docker build . -t localhost/coreos
       - name: Copy distro
         run: docker cp $(docker create localhost/coreos):/srv/target/. ./target
       - name: Publish release
