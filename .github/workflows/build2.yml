@@ -19,8 +19,8 @@ jobs:
         run: docker build . -t localhost/coreos
       - name: Copy distro
         run: docker cp $(docker create localhost/coreos):/srv/target/. ./target
-      - name: Remove iso from publishing
-        run: rm ./target/*.iso
+#      - name: Remove iso from publishing
+#        run: rm ./target/*.iso
       - name: Publish release
         uses: ncipollo/release-action@v1
         with:
