@@ -1,4 +1,4 @@
 [submodule "fedora-coreos-config"]
 	path = fedora-coreos-config
 	url = https://github.com/coreos/fedora-coreos-config.git
-	branch = stable
+	branch = rhcos-4.13
