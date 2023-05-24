@@ -35,6 +35,9 @@ packages:
   - nano nano-default-editor
   - dnsmasq
   - firewalld
+  - systemd-networkd
+  - fail2ban
+  - fail2ban-all
 
 exclude-packages:
   - zincati
