@@ -14,7 +14,7 @@ jobs:
       - name: Checkout submodules init
         run: git submodule init
       - name: Checkout submodules update
-        run: git submodule update --recursive
+        run: git submodule update --remote
       - name: Build Docker image
         run: docker build . -t localhost/coreos
       - name: Copy distro
