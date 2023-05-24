@@ -11,8 +11,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Checkout submodukes
-        run: git submodule update --init --recursive
+      - name: Checkout submodules init
+        run: git submodule init
+      - name: Checkout submodules update
+        run: git submodule update --recursive
       - name: Build Docker image
         run: docker build . -t localhost/coreos
       - name: Copy distro
