@@ -1,0 +1,34 @@
+variant: fcos
+version: 1.5.0
+storage:
+    disks:
+        - device: /dev/sda
+          wipe_table: false
+          partitions:
+              - number: 1
+                label: data
+    filesystems:
+        - path: /data
+          device: /dev/disk/by-partlabel/data
+          format: ext4
+          wipe_filesystem: false
+          label: data
+          with_mount_unit: true
+systemd:
+    units:
+        - name: NetworkManager.service
+          enabled: false
+        - name: systemd-networkd.service
+          enabled: true
+        - name: firewalld.service
+          enabled: true
+        - name: fail2ban.service
+          enabled: true
+passwd:
+    users:
+        - name: core
+          # core
+          password_hash: $y$j9T$gdkeftw1yMqScUp/yPN/F1$yLKnRcpUEfmfM3gW35Y..HPJUVW3JqEC9zxAUa9tEL5
+        - name: root
+          # root
+          password_hash: $y$j9T$ytrxx4oZeFNQwW0175d0r.$lTYMvuXUGAuMLYcpU2YWXjSthW2J0Cgu5dXa6SKQnR8
