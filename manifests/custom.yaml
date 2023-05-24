@@ -42,7 +42,7 @@ packages:
 exclude-packages:
   - zincati
   - perl
-  - perl-interpreter
+#  - perl-interpreter
   - nodejs
   - dnf
   - grubby
