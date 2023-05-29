@@ -35,14 +35,14 @@ packages:
   - nano nano-default-editor
   - dnsmasq
   - firewalld
-#  - systemd-networkd
-#  - fail2ban
-#  - fail2ban-all
+  - systemd-networkd
+  - fail2ban
+  - fail2ban-all
 
 exclude-packages:
   - zincati
   - perl
-  - perl-interpreter
+#  - perl-interpreter
   - nodejs
   - dnf
   - grubby
