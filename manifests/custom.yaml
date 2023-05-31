@@ -56,6 +56,9 @@ etc-group-members:
 
 postprocess:
   - |
+    #!/bin/bash
+    mkdir -p /data
+  - |
     #!/usr/bin/env bash
     set -euxo pipefail
     source /etc/os-release

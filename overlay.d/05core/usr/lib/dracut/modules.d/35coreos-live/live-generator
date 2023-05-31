@@ -257,6 +257,7 @@ Where=/sysroot/var
 Type=none
 Options=bind
 EOF
+add_requires sysroot-var.mount initrd-root-fs.target
 
 common_etcvar_unit >"${UNIT_DIR}/sysroot-data.mount"
 cat >>"${UNIT_DIR}/sysroot-data.mount" <<EOF
@@ -266,7 +267,7 @@ Where=/sysroot/data
 Type=none
 Options=bind
 EOF
-add_requires sysroot-vdata.mount initrd-root-fs.target
+add_requires sysroot-data.mount initrd-root-fs.target
 
 cat >>"${UNIT_DIR}/sysroot-relabel.service" <<EOF
 [Unit]
