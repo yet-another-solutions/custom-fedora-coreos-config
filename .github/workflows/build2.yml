@@ -27,14 +27,18 @@ jobs:
           sudo rm -rf /opt/ghc
           sudo rm -rf "/usr/local/share/boost"
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-      - name: Disk free after
+      - name: Disk free after free up
         run: df -h
       - name: Build Docker image
         run: docker build . -t localhost/coreos
+      - name: Disk free after build
+        run: df -h
       - name: Copy distro
         run: docker cp $(docker create localhost/coreos):/srv/target/. ./target
 #      - name: Remove iso from publishing
 #        run: rm ./target/*.iso
+      - name: Disk free after copying
+        run: df -h
       - name: Publish release
         uses: ncipollo/release-action@v1
         with:
