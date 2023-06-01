@@ -38,6 +38,9 @@ packages:
   - systemd-networkd
   - fail2ban
   - fail2ban-all
+  - vim
+  - mc
+  - wget
 
 exclude-packages:
   - zincati
@@ -55,9 +58,6 @@ etc-group-members:
   - docker
 
 postprocess:
-  - |
-    #!/bin/bash
-    mkdir -p /data
   - |
     #!/usr/bin/env bash
     set -euxo pipefail
