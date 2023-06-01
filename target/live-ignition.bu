@@ -1,6 +1,14 @@
 variant: fcos
 version: 1.5.0
 storage:
+    directories:
+        - path: /var/data
+          overwrite: true
+          mode: 0700
+          user:
+            name: root
+          group:
+            name: root
     disks:
         - device: /dev/sda
           wipe_table: false
@@ -8,7 +16,7 @@ storage:
               - number: 1
                 label: data
     filesystems:
-        - path: /data
+        - path: /var/data
           device: /dev/disk/by-partlabel/data
           format: ext4
           wipe_filesystem: false
