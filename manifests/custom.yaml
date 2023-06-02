@@ -41,6 +41,8 @@ packages:
   - vim
   - mc
   - wget
+  - nginx
+  - syslinux-tftpboot
 
 exclude-packages:
   - zincati
@@ -58,6 +60,10 @@ etc-group-members:
   - docker
 
 postprocess:
+  - |
+    #!/bin/bash
+    mkdir /etc/pxe
+    cp /tftpboot/* /etc/pxe
   - |
     #!/usr/bin/env bash
     set -euxo pipefail
