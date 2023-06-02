@@ -62,7 +62,7 @@ etc-group-members:
 postprocess:
   - |
     #!/bin/bash
-    mkdir /etc/pxe
+    mkdir -p /etc/pxe
     cp /tftpboot/* /etc/pxe
   - |
     #!/usr/bin/env bash
