@@ -44,4 +44,4 @@ jobs:
         with:
           artifacts: "target/*"
           body: "Custom coreos build (v37 base)"
-          tag: "v1.0.4"
+          tag: "v1.0.5"
