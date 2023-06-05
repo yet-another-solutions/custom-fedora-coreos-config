@@ -1,4 +1,4 @@
-FROM quay.io/coreos-assembler/coreos-assembler
+FROM ghcr.io/yet-another-solutions/coreos-assembler:rhcos-4.13
 
 ENV COSA_NO_KVM=1
 ENV COSA_SKIP_OVERLAY=1
